@@ -1,0 +1,12 @@
+{% extends 'application/main.html' %}
+{% load static %}
+{% block content %}
+<p>Are you sure want to delete "{{product}}"?</p>
+
+<form action="{% url 'delete_product' product.id %}" method="POST">
+{% csrf_token %}
+    <a href="{% url 'application' %}">Cancel</a>
+    <input type="submit" name="Confirm">
+</form>
+
+{% endblock content %}

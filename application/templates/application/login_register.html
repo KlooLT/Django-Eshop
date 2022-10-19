@@ -1,0 +1,47 @@
+{% extends 'application/main.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" />
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <title>Login and register</title>
+</head>
+<body>
+    <div>
+      {% if page == 'login' %}
+      <form method="post" class="form">
+        {% csrf_token %}
+        <h1>Login</h1>
+        <h4>Login for better user experience</h4>
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Username</label>
+          <input type="text" class="form-control" name="username" id="exampleInputEmail1" aria-describedby="emailHelp">
+
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Password</label>
+          <input type="password" name="password" class="form-control" id="exampleInputPassword1">
+        </div>
+        <div class="mb-3 form-check">
+          <input type="checkbox" class="form-check-input" id="exampleCheck1">
+          <label class="form-check-label" for="exampleCheck1">Check me out</label>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <p>Don't have an account? Sign up <a href="{% url 'register' %}"> Sign up</a></p>
+      </form>
+      {% else %}
+          <form method="post">
+              {% csrf_token %}
+              {{form}}
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <p>Already have an account? Login <a href="{% url 'login' %}"> Login</a></p>
+          </form>
+      {% endif %}
+    </div>
+</body>
+</html>
+{% endblock content %}
